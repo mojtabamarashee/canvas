@@ -14,12 +14,12 @@ class App extends Component {
 		}
 	  }
 	componentDidMount() {
-	   setInterval(this.TestFun.bind(this), 1000);
+	   setInterval(this.TestFun.bind(this), 100);
 	   // store intervalId in the state so it can be accessed later:
 	}
 
 	TestFun (){
-	   this.setState({ value : this.state.value +20 });
+	   this.setState({ value : this.state.value +1 });
 	}
 
 

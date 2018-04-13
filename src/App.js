@@ -6,6 +6,24 @@ import {CanvasCom, Axis} from './com.js';
 
 
 class App extends Component {
+
+	 constructor (props) {
+		 super(props)
+		this.state = {
+		  value: 0
+		}
+	  }
+	componentDidMount() {
+	   setInterval(this.TestFun.bind(this), 1000);
+	   // store intervalId in the state so it can be accessed later:
+	}
+
+	TestFun (){
+	   this.setState({ value : this.state.value +20 });
+	}
+
+
+
   render() {
     return (
       <div className="App">
@@ -17,7 +35,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 		<CanvasCom>
-			<Axis name="mojtaba"/>	
+			<Axis name={this.state.value}/>	
 		</CanvasCom>
       </div>
     );

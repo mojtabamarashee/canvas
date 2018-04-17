@@ -10,8 +10,17 @@ export class Axis extends Component {
 
 
 export class CanvasCom extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			x : 0
+		}
+	}
+
     componentDidMount() {
         this.updateCanvas();
+		setInterval(this.Test.bind(this), 100);
     }
 
 	componentDidUpdate() {
@@ -19,26 +28,32 @@ export class CanvasCom extends React.Component {
 		//console.log("update");
         this.updateCanvas();
     }
+	shouldComponentUpdate() {
+		return true
+    }
+	Test (){
+		//console.log("x = ", this.state.x);
+		this.setState({x : this.state.x + 1});
+	}
 
     updateCanvas() {
         const ctx = this.refs.canvas.getContext('2d');
         ctx.fillRect(0,0, 300, 300);
-		{React.Children.map(this.props.children, (child, i) => {
-		  // Ignore the first child
-			console.log(child.props.name)
-			ctx.beginPath();
-			ctx.strokeStyle = "white";
-			ctx.moveTo(child.props.name,0)
-			ctx.lineTo(child.props.name,300)
-			ctx.stroke();
-		})}
+		ctx.beginPath();
+		ctx.strokeStyle = "white";
+		ctx.moveTo(this.state.x,0);
+		ctx.lineTo(this.state.x,300);
+		ctx.stroke();
+	}
 
-    }
     render() {
-        return (
-            <canvas ref="canvas" width={300} height={300}/>
-        );
-    }
+
+		console.log("render");
+		var out = this.state.x <= 10 ? (<canvas ref="canvas" width={300} height={300}/>)
+        : <div/> 
+		return out;
+
+            }
 }
 
 //export default {CanvasCom, Axis};

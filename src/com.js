@@ -17,6 +17,7 @@ export class CanvasCom extends React.Component {
 			x : 0
 		}
 	}
+
 	UNSAFE_componentWillReceiveProps(){
 		console.log("componentWillReceiveProps = ");
 		this.updateCanvas();
@@ -26,9 +27,10 @@ export class CanvasCom extends React.Component {
 		console.log("UNSAFE_componentWillUpdate = ");
 
 	}
+
     componentDidMount() {
-        this.updateCanvas();
-		setInterval(this.Test.bind(this), 1000);
+        //this.updateCanvas();
+		//setInterval(this.Test.bind(this), 1000);
     }
 
 	componentDidUpdate() {
@@ -48,8 +50,8 @@ export class CanvasCom extends React.Component {
         ctx.fillRect(0,0, 300, 300);
 		ctx.beginPath();
 		ctx.strokeStyle = "white";
-		ctx.moveTo(this.state.x,0);
-		ctx.lineTo(this.state.x,300);
+		ctx.moveTo(this.props.x,0);
+		ctx.lineTo(this.props.x,300);
 		ctx.stroke();
 	}
 

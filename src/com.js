@@ -17,19 +17,26 @@ export class CanvasCom extends React.Component {
 			x : 0
 		}
 	}
+	UNSAFE_componentWillReceiveProps(){
+		console.log("componentWillReceiveProps = ");
+		this.updateCanvas();
+	}
 
+	UNSAFE_componentWillUpdate(){
+		console.log("UNSAFE_componentWillUpdate = ");
+
+	}
     componentDidMount() {
         this.updateCanvas();
-		setInterval(this.Test.bind(this), 100);
+		setInterval(this.Test.bind(this), 1000);
     }
 
 	componentDidUpdate() {
         //this.updateCanvas();
-		//console.log("update");
-        this.updateCanvas();
+		console.log("did update");
     }
 	shouldComponentUpdate() {
-		return true
+		return false
     }
 	Test (){
 		//console.log("x = ", this.state.x);
@@ -49,11 +56,10 @@ export class CanvasCom extends React.Component {
     render() {
 
 		console.log("render");
-		var out = this.state.x <= 10 ? (<canvas ref="canvas" width={300} height={300}/>)
-        : <div/> 
-		return out;
-
-            }
+        return (
+            <canvas ref="canvas" width={300} height={300}/>
+        );
+    }
 }
 
 //export default {CanvasCom, Axis};
